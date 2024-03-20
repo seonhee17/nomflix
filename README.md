@@ -44,3 +44,16 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+# 이 프로젝트는 NOMFLIX
+# 넷플릭스 따라하기 만들어보기 입니다.
+# 조건 
+# 1.Using React Router, React Query, Styled Components and Motion build a movie app like this one: 
+
+# Home Page (/): Display a list of popular movies.
+# Coming Soon Page (/coming-soon): Display a list of upcoming movies.
+# Now Playing Page (/now-playing): Display a list of movies that are currently playing in theaters.
+# When a movie is clicked, create a modal that displays the movie's details.
+# Use React Query to fetch the data.
+# Use Framer Motion to recreate the animations seen in the video (navigation, movies list, modal)
+
