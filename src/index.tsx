@@ -1,8 +1,7 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import {RecoilRoot} from "recoil";
 import { BrowserRouter } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 
@@ -62,7 +61,7 @@ body {
   font-weight:300;
   font-family: 'Source Sans Pro', sans-serif;
   background-color : black;
-  font-color:white;
+  color:white;
   line-height: 1.2;
 }
 a {
@@ -79,13 +78,11 @@ const client = new QueryClient();
 
 root.render(
   <BrowserRouter>
-  <React.StrictMode>
-    <RecoilRoot>
-    <QueryClientProvider client={client}>
-    <GlobalStyle /> 
-    <App />
-    </QueryClientProvider>
-    </RecoilRoot>
-  </React.StrictMode>
+    <React.StrictMode>
+     <QueryClientProvider client={client}>
+        <GlobalStyle /> 
+        <App />
+      </QueryClientProvider>
+    </React.StrictMode>
   </BrowserRouter>
 );
