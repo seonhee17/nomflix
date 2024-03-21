@@ -11,10 +11,7 @@ function Router(){
   return (
     <BrowserRouter>
         <Routes>
-          <Route  path="/"  element={<App />}></Route>  
-          <Route  path="/Poupular"  element={<List />}></Route>  
-          <Route  path="/Coming"    element={<List />}></Route>  
-          <Route  path="/Now"       element={<List />}></Route>  
+          <Route  path="/"  element={<App />}></Route>   
         {/*   <Route  path="/coming-soon"  element={<ComingSoon/>}></Route>  
           <Route  path="/now-playing"  element={<NowPlaying/>}></Route>  */} 
         </Routes>

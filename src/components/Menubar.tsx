@@ -1,5 +1,10 @@
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
+import App from "../App";
+
+const Navi = styled.div`
+    margin-top : 20px;
+`;
 
 const Btn = styled.button`
     background-color : black;
@@ -10,31 +15,32 @@ const Btn = styled.button`
 `;
 
 
-
 function MenuBar () {
 
     const navigate = useNavigate();
+    navigate( "/",{state :{key: 'popular'}});
     
-   
-   
     const popular = () =>{
-        navigate( "/Poupular",{state :{key: 'POPULAR'}});
+        navigate( "/",{state :{key: 'popular'}});
     }
     const coming = () =>{
-        navigate( "/Coming",{state :{key: 'COMING SOON'}});
+        navigate( "/coming-soon",{state :{key: 'coming'}});
     }
     const now = () =>{
-        navigate( "/Now",{state :{key: 'NOW PLAYING'}});
+        navigate( "/now-playing",{state :{key: 'now'}});
     }
 
     return (
-        <header>
-            <ul>
-                <li><Btn onClick={popular} >POPULAR</Btn></li>
-                <li><Btn onClick={coming} >COMING SOON</Btn></li>
-                <li><Btn onClick={now} >NOW PLAYING</Btn></li>
-            </ul>
-        </header>
+   
+        <Navi>
+            <Btn onClick={popular} >POPULAR</Btn>
+            <Btn onClick={coming} >COMING SOON</Btn>
+            <Btn onClick={now} >NOW PLAYING</Btn>
+            <Routes>
+                <Route  path="/coming-soon" element={<App />}></Route>  
+                <Route  path="/now-playing" element={<App />}></Route> 
+            </Routes>
+        </Navi>   
     );
 };
 
