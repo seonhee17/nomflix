@@ -1,12 +1,11 @@
 import styled from "styled-components";
-import {  Outlet, useLocation } from "react-router-dom";
+import {  Outlet, Routes , Route } from "react-router-dom";
 import List from "./routes/List";
 import MenuBar from "./components/Menubar";
-import { IAPIResponse, getComingSoon, getNowPlaying, getPopular } from "./api";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+
 
 const Layout = styled.div`
-    width: 40%;
+    width: 35%;
     height:100%;
     margin: 0 auto;
     background-color: black;
@@ -20,8 +19,12 @@ export default function App() {
   
     <Layout>
         <MenuBar />
-        <List/>
+         <List/> 
         <Outlet/>
+        <Routes>
+          <Route  path="/coming-soon"  element={<List/>}></Route>  
+          <Route  path="/now-playing"  element={<List/>}></Route>
+        </Routes>
     </Layout>
     
     </div>

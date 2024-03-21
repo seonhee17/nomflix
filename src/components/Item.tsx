@@ -1,18 +1,22 @@
 import styled from "styled-components";
 import { motion } from "framer-motion"; 
 import { useLocation } from "react-router-dom";
+
+
 import { makeImagePath } from "../api";
 
 
-const MovieItem = styled.div`
+const MovieItem = styled(motion.li)`
    width: 180px;
    height: 360px;
    display: inline-block;
-   margin-top: 30px;
+   margin: 15px;
+   border-radius : 15px;
    
    img{
     width: 100%;
     display: inline-block;
+    border-radius: 10%;
    }
    span{
     display: inline-block;
@@ -21,21 +25,42 @@ const MovieItem = styled.div`
    } 
 `;
 
+const MovieImg = styled(motion.div)`
+      
+`;
+
+const item = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1
+  }
+};
 
 
 interface IItemInfo{
+  id:string;
   title:string;
   imgPath : string;
 }
 
 
-function Item({ imgPath , title }:IItemInfo) {
+function Item({ id , title ,imgPath }:IItemInfo) {
     return (
+      <>
 
-        <MovieItem>
-          <img src={makeImagePath(imgPath)}/>
+        <MovieItem key={id}  variants={item}  >
+          <MovieImg
+            whileHover={{ scale: 1.3 }}
+            >
+            <img src={makeImagePath(imgPath)} 
+                 alt={title} 
+                 
+                  />
+          </MovieImg>
           <span>{title}</span>
         </MovieItem>
+      </>
    );
 
   }

@@ -3,58 +3,75 @@ import styled  from "styled-components";
 import { IAPIResponse, getPopular,getComingSoon,getNowPlaying } from "../api";
 import { useQuery } from "react-query";
 import Item from "../components/Item";
-/* 
-interface IMovie {
-    adult: boolean;
-    backdrop_path: string;
-    genre_ids: number[];
-    id: number;
-    original_language: string;
-    original_title: string;
-    overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
+import { motion } from "framer-motion";
+
+
+const MovieList = styled(motion.ul)`
+      width: 100%;
+`;
+
+const container = {
+  hidden: { opacity: 1, scale: 0 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      delayChildren: 0.3,
+      staggerChildren: 0.2
+    }
   }
- */
+};
+
 
 const Loader = styled.span`
   text-align: center;
 `;
 
 
- function List () {
+function List () {
     const location = useLocation();
+    
+    const state = location.state;
+    const key = (state == null ? "" : ( state.key ));    
+    console.log("List.tsx",key);
+    let queryKeyword = "popular"
+    if(key !== "" ){
+      queryKeyword =  key;
+    }
 
-    const key = location.state.key || "";
-     
-    const { isLoading , data  } =   useQuery<IAPIResponse>({
-        queryKey: "allMovies",
-        queryFn : (key ===  "comming"  ? getComingSoon : ( key ===  "now"  ? getNowPlaying : getPopular))
+    const { isLoading , data ,refetch  } = useQuery<IAPIResponse>({
+        queryKey: queryKeyword,
+        queryFn : (key ===  "coming"  ? getComingSoon : ( key ===  "now"  ? getNowPlaying : getPopular))
     });
-   
+    //refetch();
+    //리스트를 다시 그려줘야 할것 같다...
+    
+
     return (
         <>
-        {   isLoading ? 
+        {  isLoading ? 
             (<Loader> is Loading... </Loader>)
             :
-            (<div>
-                {
-                    data?.results.map((item) =>(
-                     
-                        <Item imgPath={item.poster_path}
-                              title={item.title} />
+            (<MovieList 
+              variants={container}
+              initial="hidden"
+              animate="visible"
+             >
+                {   
+                    data?.results.map((item,index) =>(
+                      
+                      <Item key={index} 
+                            id={item.id.toString()} 
+                            title={item.title} 
+                            imgPath={item.poster_path}
+                           />
                     ))
                 }
-            </div>
+            </MovieList>
             )
             
         }
-        </>
+       </>
     );
 }; 
 

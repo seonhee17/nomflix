@@ -12,8 +12,6 @@ function Router(){
     <BrowserRouter>
         <Routes>
           <Route  path="/"  element={<App />}></Route>   
-        {/*   <Route  path="/coming-soon"  element={<ComingSoon/>}></Route>  
-          <Route  path="/now-playing"  element={<NowPlaying/>}></Route>  */} 
         </Routes>
     </BrowserRouter>
   );
