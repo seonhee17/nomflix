@@ -1,22 +1,14 @@
 import styled from "styled-components";
 import { motion } from "framer-motion"; 
-import { useLocation } from "react-router-dom";
-
-
 import { makeImagePath } from "../api";
 
 
 const MovieItem = styled(motion.li)`
-   
-    width: 100%;
-    height: 100%;
-    display: inline-block;
-    border-radius: 15px;
-    align-content: center;
-    justify-items: center;
-
-
-
+   width: 180px;
+   height: 100%;
+   display: inline-block;
+   margin: 15px;
+   border-radius : 15px;   
    
    img{
     width: 100%;
@@ -51,6 +43,7 @@ interface IItemInfo{
 
 
 function Item({ id , title ,imgPath }:IItemInfo) {
+    
     return (
       <>
 
@@ -69,7 +62,5 @@ function Item({ id , title ,imgPath }:IItemInfo) {
    );
 
   }
-
-
-
+  
 export default Item;

@@ -2,19 +2,23 @@ import { useLocation } from "react-router-dom";
 import styled  from "styled-components";
 import { IAPIResponse, getPopular,getComingSoon,getNowPlaying } from "../api";
 import { useQuery } from "react-query";
-import Item from "../components/Item";
+import { useRecoilValue } from "recoil";
+import { Category } from "../atom";
+
+
+import Item from "../components/Item"; //default export
 import { motion } from "framer-motion";
 
 
+
 const MovieList = styled(motion.ul)`
-    width: 100%;
-    display: grid ;
-    grid-template-columns: repeat(3,1fr);
-    grid-gap : 20px;
-  /*   display: ;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center; */
+
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap : 15px;
+      justify-items: center;
+
 `;
 
 const container = {
@@ -36,29 +40,22 @@ const Loader = styled.span`
 
 
 function List () {
-    const location = useLocation();
-    
-    const state = location.state;
-    const key = (state == null ? "" : ( state.key ));    
-    console.log("List.tsx",key);
-    let queryKeyword = "popular"
-    if(key !== "" ){
-      queryKeyword =  key;
-    }
-    const { isLoading , data ,refetch  } = useQuery<IAPIResponse>({
-        queryKey: queryKeyword,
-        queryFn : (key ===  "coming"  ? getComingSoon : ( key ===  "now"  ? getNowPlaying : getPopular))
-    });
-    //refetch();
-    //리스트를 다시 그려줘야 할것 같다...
-    
+ 
+    const category = useRecoilValue(Category);
+    console.log("List.tsx",Category);
 
+    const { isLoading , data   } = useQuery<IAPIResponse>({
+        queryKey: category,
+        queryFn : (category ===  "coming"  ? getComingSoon : ( category ===  "now"  ? getNowPlaying : getPopular))
+
+    });
+   
     return (
         <>
         {  isLoading ? 
             (<Loader> is Loading... </Loader>)
             :
-            (<MovieList className={key}
+            (<MovieList className={category}
               variants={container}
               initial="hidden"
               animate="visible"
@@ -75,7 +72,6 @@ function List () {
                 }
             </MovieList>
             )
-            
         }
        </>
     );

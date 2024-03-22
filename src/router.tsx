@@ -11,7 +11,7 @@ function Router(){
   return (
     <BrowserRouter>
         <Routes>
-          <Route  path="/"  element={<App />}></Route>   
+          <Route  path="/*"  element={<App />}></Route>
         </Routes>
     </BrowserRouter>
   );
