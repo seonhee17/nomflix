@@ -7,7 +7,14 @@ import { motion } from "framer-motion";
 
 
 const MovieList = styled(motion.ul)`
-      width: 100%;
+    width: 100%;
+    display: grid ;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap : 20px;
+  /*   display: ;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center; */
 `;
 
 const container = {
@@ -38,7 +45,6 @@ function List () {
     if(key !== "" ){
       queryKeyword =  key;
     }
-
     const { isLoading , data ,refetch  } = useQuery<IAPIResponse>({
         queryKey: queryKeyword,
         queryFn : (key ===  "coming"  ? getComingSoon : ( key ===  "now"  ? getNowPlaying : getPopular))
@@ -52,7 +58,7 @@ function List () {
         {  isLoading ? 
             (<Loader> is Loading... </Loader>)
             :
-            (<MovieList 
+            (<MovieList className={key}
               variants={container}
               initial="hidden"
               animate="visible"

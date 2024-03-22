@@ -7,11 +7,16 @@ import { makeImagePath } from "../api";
 
 
 const MovieItem = styled(motion.li)`
-   width: 180px;
-   height: 360px;
-   display: inline-block;
-   margin: 15px;
-   border-radius : 15px;
+   
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    border-radius: 15px;
+    align-content: center;
+    justify-items: center;
+
+
+
    
    img{
     width: 100%;
