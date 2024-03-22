@@ -23,7 +23,7 @@ const Btn = styled.button`
     font-size : 1em;
     margin: 0 auto;
     border:0px;
-    font-weight:700;s
+    font-weight:700;
 `;
 const Circle = styled(motion.div)`
       width : 8px;
