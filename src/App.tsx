@@ -4,29 +4,34 @@ import List from "./routes/List";
 import MenuBar from "./components/Menubar";
 
 
+
 const Layout = styled.div`
-    width: 35%;
+    width: 45%;
+    min-width:45%;
     height:100%;
     margin: 0 auto;
     background-color: black;
     text-align: center;
 `;
 
+const ChangeArea = styled.div`
+    width: 100%;
+  
+`;
 
 export default function App() {
+ 
   return (
-    <div>
-  
-    <Layout>
+    <>
+      <Layout>
         <MenuBar />
-         <List/> 
-        <Outlet/>
-        <Routes>
-          <Route  path="/coming-soon"  element={<List/>}></Route>  
-          <Route  path="/now-playing"  element={<List/>}></Route>
-        </Routes>
-    </Layout>
-    
-    </div>
+
+        <ChangeArea>
+          <List/>
+          <Outlet/>
+        </ChangeArea>
+
+      </Layout>
+    </>
   );
 }
