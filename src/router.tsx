@@ -1,11 +1,7 @@
 
 import App from "./App";
-import List from "./routes/List";
 import { BrowserRouter,Routes,Route} from "react-router-dom";
-
-interface IRouter{
-
-}
+import List from "./routes/List";
 
 function Router(){
   return (

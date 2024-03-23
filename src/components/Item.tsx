@@ -4,11 +4,12 @@ import { makeImagePath } from "../api";
 
 
 const MovieItem = styled(motion.li)`
-   width: 180px;
+   width: 100%;
    height: 100%;
    display: inline-block;
    margin: 15px;
-   border-radius : 15px;   
+   border-radius : 15px;
+   cursor: pointer;   
    
    img{
     width: 100%;
@@ -39,11 +40,14 @@ interface IItemInfo{
   id:string;
   title:string;
   imgPath : string;
+  onClick : Function;
+  bgPhoto : string;
+  layoutId : string;
 }
 
 
-function Item({ id , title ,imgPath }:IItemInfo) {
-    
+function Item({ id , title ,imgPath ,onClick,bgPhoto,layoutId}:IItemInfo) {
+
     return (
       <>
 
