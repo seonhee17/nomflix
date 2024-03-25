@@ -40,25 +40,24 @@ interface IItemInfo{
   id:string;
   title:string;
   imgPath : string;
-  onClick : Function;
-  bgPhoto : string;
   layoutId : string;
 }
 
 
-function Item({ id , title ,imgPath ,onClick,bgPhoto,layoutId}:IItemInfo) {
-
+function Item({ id , title ,imgPath ,layoutId } : IItemInfo) {
+  
     return (
       <>
-
-        <MovieItem key={id}  variants={item}  >
+        <MovieItem key={id}  
+                   variants={item} 
+                   layoutId={layoutId}  >
           <MovieImg
-            whileHover={{ scale: 1.3 }}
-            >
-            <img src={makeImagePath(imgPath)} 
-                 alt={title} 
-                 
-                  />
+                    whileHover={{ scale: 1.3 }}
+                    >
+                    <img src={makeImagePath(imgPath)} 
+                        alt={title} 
+                        
+                          />
           </MovieImg>
           <span>{title}</span>
         </MovieItem>
